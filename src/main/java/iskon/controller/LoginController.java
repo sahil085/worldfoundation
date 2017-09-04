@@ -20,7 +20,7 @@ public class LoginController
 @RequestMapping(value = "/login",method = RequestMethod.POST)
 public ModelAndView Authenticate(@ModelAttribute User user, HttpSession session) {
     List<User> userList=loginService.Authenticate(user);
-if(userList.isEmpty())
+if(userList.isEmpty()||userList==null)
 {
     ModelAndView modelAndView=new ModelAndView("login");
     modelAndView.addObject("msg","invalid credentials");
