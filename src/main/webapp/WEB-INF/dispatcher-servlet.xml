@@ -33,9 +33,10 @@
     </bean>
 	<bean id="datasourc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://localhost:3306/sahil" />
-	<property name="username" value="root" />
-	<property name="password" value="root" />
+	<!--<property name="url" value="jdbc:mysql://localhost:3306/sahil" />-->
+        <property name="url" value=" postgres://ec2-107-20-163-238.compute-1.amazonaws.com:5432/d6r6l4il14dpbt"></property>
+	<property name="username" value="rlmtgwcbxnqdyb" />
+	<property name="password" value="5c0641fba26e743698d613832edf61a377fbe02d9eff3e32873efa1654dd54dc" />
 
     </bean>
 	<bean id="sessionFactory"
