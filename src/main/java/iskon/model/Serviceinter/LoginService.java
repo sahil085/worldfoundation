@@ -8,5 +8,5 @@ import java.util.List;
 @Component
 public interface LoginService {
 
-    public List<User> Authenticate(User user);
+    public User Authenticate(User user);
 }

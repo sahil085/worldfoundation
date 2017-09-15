@@ -22,14 +22,14 @@ public class LoginDaoImp implements LoginDao{
     protected Session getSession(){
         return sessionFactory.openSession();
     }
-    public List<User> Authenticate(User user) {
+    public User Authenticate(User user) {
         Session session=getSession();
         try{
             String q="from User where email=:email and password=:password";
             Query query=session.createQuery(q);
             query.setString("email",user.getEmail());
             query.setString("password",user.getPassword());
-            return query.list();
+            return query.uniqueResult();
         }catch (Exception e)
         {
             return null;

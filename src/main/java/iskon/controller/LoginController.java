@@ -19,8 +19,8 @@ public class LoginController
     LoginService loginService;
 @RequestMapping(value = "/login",method = RequestMethod.POST)
 public ModelAndView Authenticate(@ModelAttribute User user, HttpSession session) {
-    List<User> userList=loginService.Authenticate(user);
-if(userList.isEmpty()||userList==null)
+    User userList=loginService.Authenticate(user);
+if(userList==null)
 {
     ModelAndView modelAndView=new ModelAndView("login");
     modelAndView.addObject("msg","invalid credentials");
@@ -28,10 +28,10 @@ if(userList.isEmpty()||userList==null)
 }
 else
 {
-    for(User user1:userList)
-    {
-        session.setAttribute("username",user1.getFullname());
-    }
+//    for(User user1:userList)
+//    {
+        session.setAttribute("username",userList.getFullname());
+//    }
     ModelAndView modelAndView=new ModelAndView("HariNaameKirtan");
     modelAndView.addObject("user",userList);
     session.setAttribute("useremialid",user.getEmail());
