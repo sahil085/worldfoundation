@@ -12,8 +12,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <mvc:annotation-driven/>
 
-
-    <context:component-scan base-package="iskon" />
+    <context:component-scan base-package="iskcongzb" />
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
@@ -31,14 +30,30 @@
     <!-- max size of file in memory (in bytes) -->
     <property name="maxInMemorySize" value="2048576" /> <!-- 1MB -->
     </bean>
-	<bean id="datasourc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://localhost:3306/sahil" />
-        <!--<property name="url" value="postgres://rlmtgwcbxnqdyb:5c0641fba26e743698d613832edf61a377fbe02d9eff3e32873efa1654dd54dc@ec2-107-20-163-238.compute-1.amazonaws.com:5432/d6r6l4il14dpbt"></property>-->
-	<property name="username" value="root" />
-	<property name="password" value="root" />
+
+	<!--<bean id="datasourc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+	<!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+	<!--<property name="url" value="jdbc:mysql://localhost:3306/iskcongzb" />-->
+        <!--&lt;!&ndash;<property name="url" value="postgres://tmwabqgdiuyxxd:4f3dd62349b2e6c602ab966c8c51a64e95e01206f9f34cdf0c1e7776f694a959@ec2-23-23-248-247.compute-1.amazonaws.com:5432/d6a82v9miggu4t"></property>&ndash;&gt;-->
+	<!--<property name="username" value="root"/>-->
+	<!--<property name="password" value="root"/>-->
+
+    <!--</bean>-->
+    <bean id="datasourc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="org.postgresql.Driver" />
+    <property name="url" value="jdbc:postgresql://ec2-184-73-189-190.compute-1.amazonaws.com:5432/d9ngvve1rk37c"/>
+    <!--<property name="url" value="postgres://tmwabqgdiuyxxd:4f3dd62349b2e6c602ab966c8c51a64e95e01206f9f34cdf0c1e7776f694a959@ec2-23-23-248-247.compute-1.amazonaws.com:5432/d6a82v9miggu4t"></property>-->
+    <property name="username" value="mzkubebixjntnd"/>
+    <property name="password" value="b548f57987a3fcc4c9be797c8883055d6257abbb8dd9cff5fa5a776466119bea"/>
 
     </bean>
+    <!--<bean id="datasourc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/iskcongzb" />-->
+        <!--<property name="username" value="root" />-->
+        <!--<property name="password" value="root" />-->
+
+    <!--</bean>-->
     <!--<bean class="java.net.URI" id="dbUrl">-->
         <!--<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>-->
     <!--</bean>-->
@@ -48,25 +63,27 @@
         <!--<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>-->
         <!--<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>-->
     <!--</bean>-->
+
 	<bean id="sessionFactory"
 		  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 <property name="dataSource">
     <ref bean="datasourc"></ref>
 </property>
 
-        <property name="packagesToScan" value="iskon.beans"></property>
+        <property name="packagesToScan" value="iskcongzb.domain"></property>
 
 		<property name="hibernateProperties">
 
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL81Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-
 			</props>
 		</property>
 
 	</bean>
+
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 </beans>
